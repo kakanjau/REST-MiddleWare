@@ -10,6 +10,20 @@ export default {
   root_path: think.ROOT_PATH + '/view',
   adapter: {
     ejs: {},
-    dot: {}
+    nunjucks: {
+      prerender: function(nunjucks, env){
+        //添加一个过滤器，这样可以在模板里使用了
+        env.addFilter("filter_foo", function(){
+
+        });
+      }
+    },
+    dot: {
+      strip: false,
+      prerender: function(doT, def, dot){
+        console.info(dot);
+        
+      }
+    }
   }
 };
